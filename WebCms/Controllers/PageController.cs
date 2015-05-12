@@ -10,6 +10,7 @@ namespace WebCms.Controllers
 
         private WebCmsContext _context = new WebCmsContext();
         // GET: api/Page
+          [Authorize(Roles = "Manager,Admin")]
         public IEnumerable<Page> GetPages()
         {
             var pages = from page in _context.Pages select page;
@@ -17,6 +18,7 @@ namespace WebCms.Controllers
         }
 
         // GET: api/Page/5
+        [Authorize(Roles = "Admin")]
         public IList<Page> GetPage(int id)
         {
            // var x = _context.Pages.Include("Articles").Where(p => p.Id == id).Select( new Page(){new Article{}});

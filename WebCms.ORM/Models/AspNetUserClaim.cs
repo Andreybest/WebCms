@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 namespace WebCms.ORM.Models
 {
     public partial class AspNetUserClaim

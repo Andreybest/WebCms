@@ -1,4 +1,5 @@
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using WebCms.ORM.Models.Mapping;
 
 namespace WebCms.ORM.Models
@@ -22,6 +23,7 @@ namespace WebCms.ORM.Models
         public DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public DbSet<AspNetUser> AspNetUsers { get; set; }
         public DbSet<Page> Pages { get; set; }
+        public DbSet<StyleCss> StyleCsses { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -32,6 +34,7 @@ namespace WebCms.ORM.Models
             modelBuilder.Configurations.Add(new AspNetUserLoginMap());
             modelBuilder.Configurations.Add(new AspNetUserMap());
             modelBuilder.Configurations.Add(new PageMap());
+            modelBuilder.Configurations.Add(new StyleCssMap());
         }
     }
 }

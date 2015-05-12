@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 
 namespace WebCms.ORM.Models.Mapping
@@ -19,6 +20,7 @@ namespace WebCms.ORM.Models.Mapping
             this.Property(t => t.ArticleId).HasColumnName("ArticleId");
             this.Property(t => t.AnswerText).HasColumnName("AnswerText");
             this.Property(t => t.AnswerType).HasColumnName("AnswerType");
+            this.Property(t => t.IsApproved).HasColumnName("IsApproved");
 
             // Relationships
             this.HasRequired(t => t.Article)
