@@ -1,5 +1,5 @@
-﻿using System.Net.Http.Headers;
-using System.Web.Http;
+﻿using System.Web.Http;
+using Newtonsoft.Json;
 
 namespace WebCms
 {
@@ -19,11 +19,11 @@ namespace WebCms
             );
 
 
-            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
 
             var json = config.Formatters.JsonFormatter;
 
-            json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
+            json.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.Objects;
             config.Formatters.Remove(config.Formatters.XmlFormatter);
         }
     }

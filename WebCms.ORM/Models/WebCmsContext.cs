@@ -1,5 +1,4 @@
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using WebCms.ORM.Models.Mapping;
 
 namespace WebCms.ORM.Models

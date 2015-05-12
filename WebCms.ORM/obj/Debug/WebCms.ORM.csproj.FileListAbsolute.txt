@@ -8,3 +8,13 @@ C:\Users\a.blindu\documents\visual studio 2013\Projects\WebCms\WebCms.ORM\bin\De
 C:\Users\a.blindu\documents\visual studio 2013\Projects\WebCms\WebCms.ORM\obj\Debug\WebCms.ORM.csprojResolveAssemblyReference.cache
 C:\Users\a.blindu\documents\visual studio 2013\Projects\WebCms\WebCms.ORM\obj\Debug\WebCms.ORM.dll
 C:\Users\a.blindu\documents\visual studio 2013\Projects\WebCms\WebCms.ORM\obj\Debug\WebCms.ORM.pdb
+C:\Users\a.blindu\Documents\Visual Studio 2013\Projects\WebCmsRepo\WebCms.ORM\bin\Debug\WebCms.ORM.dll.config
+C:\Users\a.blindu\Documents\Visual Studio 2013\Projects\WebCmsRepo\WebCms.ORM\bin\Debug\WebCms.ORM.dll
+C:\Users\a.blindu\Documents\Visual Studio 2013\Projects\WebCmsRepo\WebCms.ORM\bin\Debug\WebCms.ORM.pdb
+C:\Users\a.blindu\Documents\Visual Studio 2013\Projects\WebCmsRepo\WebCms.ORM\bin\Debug\EntityFramework.dll
+C:\Users\a.blindu\Documents\Visual Studio 2013\Projects\WebCmsRepo\WebCms.ORM\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\a.blindu\Documents\Visual Studio 2013\Projects\WebCmsRepo\WebCms.ORM\bin\Debug\EntityFramework.xml
+C:\Users\a.blindu\Documents\Visual Studio 2013\Projects\WebCmsRepo\WebCms.ORM\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\a.blindu\Documents\Visual Studio 2013\Projects\WebCmsRepo\WebCms.ORM\obj\Debug\WebCms.ORM.csprojResolveAssemblyReference.cache
+C:\Users\a.blindu\Documents\Visual Studio 2013\Projects\WebCmsRepo\WebCms.ORM\obj\Debug\WebCms.ORM.dll
+C:\Users\a.blindu\Documents\Visual Studio 2013\Projects\WebCmsRepo\WebCms.ORM\obj\Debug\WebCms.ORM.pdb

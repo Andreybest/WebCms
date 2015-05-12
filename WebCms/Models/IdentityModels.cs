@@ -20,7 +20,7 @@ namespace WebCms.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("WebCmsContext", throwIfV1Schema: false)
         {
         }
 
