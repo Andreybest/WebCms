@@ -59,7 +59,9 @@
     <Compile Include="Models\Mapping\AspNetUserLoginMap.cs" />
     <Compile Include="Models\Mapping\AspNetUserMap.cs" />
     <Compile Include="Models\Mapping\PageMap.cs" />
+    <Compile Include="Models\Mapping\StyleCssMap.cs" />
     <Compile Include="Models\Page.cs" />
+    <Compile Include="Models\StyleCss.cs" />
     <Compile Include="Models\WebCmsContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

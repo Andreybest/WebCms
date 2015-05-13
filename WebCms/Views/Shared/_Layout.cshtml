@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
+   @* <link type="text/css" rel="stylesheet" media="all" href="../../Content/darkly.bootstrap.min.css" id="theme_css" />*@
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
@@ -24,8 +25,18 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Themes <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" data-theme="default" class="theme-link">Default</a></li>
+                            <li><a href="#" data-theme="cerulean" class="theme-link">Cerulean</a></li>
+                            <li><a href="#" data-theme="darkly" class="theme-link">Darkly</a></li>
+                            <li><a href="#" data-theme="paper" class="theme-link">Paper</a></li>
+                            <li><a href="#" data-theme="superhero" class="theme-link">Superhero</a></li>
+                        </ul>
+                    </li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+              @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
@@ -39,7 +50,23 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    <link type="text/css" rel="stylesheet" media="all" href="../../Content/darkly.bootstrap.min.css" id="theme_css" />
     @RenderSection("scripts", required: false)
+<script>
+    var themes = {
+        "default": "../../Content/bootstrap.min.css",
+        "cerulean": "../../Content/cerulean.bootstrap.min.css",
+        "darkly": "../../Content/darkly.bootstrap.min.css",
+        "paper": "../../Content/paper.bootstrap.min.css",
+        "superhero": "../../Content/superhero.bootstrap.min.css"
+    }
+    $(function () {
+        var themesheet = $('<link href="' + themes['default'] + '" rel="stylesheet" />');
+        themesheet.appendTo('head');
+        $('.theme-link').click(function () {
+            var themeurl = themes[$(this).attr('data-theme')];
+            themesheet.attr('href', themeurl);
+        });
+    });
+</script>
 </body>
 </html>

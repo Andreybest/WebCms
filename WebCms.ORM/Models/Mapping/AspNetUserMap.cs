@@ -22,6 +22,9 @@ namespace WebCms.ORM.Models.Mapping
                 .IsRequired()
                 .HasMaxLength(256);
 
+            this.Property(t => t.WorkingOn)
+                .HasMaxLength(128);
+
             // Table & Column Mappings
             this.ToTable("AspNetUsers");
             this.Property(t => t.Id).HasColumnName("Id");
@@ -36,6 +39,7 @@ namespace WebCms.ORM.Models.Mapping
             this.Property(t => t.LockoutEnabled).HasColumnName("LockoutEnabled");
             this.Property(t => t.AccessFailedCount).HasColumnName("AccessFailedCount");
             this.Property(t => t.UserName).HasColumnName("UserName");
+            this.Property(t => t.WorkingOn).HasColumnName("WorkingOn");
         }
     }
 }
