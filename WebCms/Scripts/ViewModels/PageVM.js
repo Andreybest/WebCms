@@ -2,6 +2,9 @@
 (function (context) {
 
 
+
+
+
     var pageVM = {
          test: ko.observable("testtttt")
     }

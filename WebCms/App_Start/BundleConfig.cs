@@ -21,11 +21,20 @@ namespace WebCms
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/knockout-3.3.0.min.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/knockout.validation.js",
+                      "~/Scripts/knockout.mapping-latest.js")
+                      );
+            bundles.Add(new ScriptBundle("~/bundles/notyNotifications").Include(
+                     "~/Scripts/noty/jquery.noty.js",
+                      "~/Scripts/noty/layouts/bottomLeft.js",
+                      "~/Scripts/noty/themes/default.js",
+                      "~/Scripts/noty/Noty.js"
+                      )
+                );
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                       "~/Content/darkly.bootstrap.min.css",
+                       "~/Content/site.css"));
         }
     }
 }

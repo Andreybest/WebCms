@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
-   @* <link type="text/css" rel="stylesheet" media="all" href="../../Content/darkly.bootstrap.min.css" id="theme_css" />*@
     @Scripts.Render("~/bundles/modernizr")
-
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -36,7 +36,7 @@
                         </ul>
                     </li>
                 </ul>
-              @Html.Partial("_LoginPartial")
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
@@ -50,23 +50,40 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/notyNotifications")
     @RenderSection("scripts", required: false)
-<script>
-    var themes = {
-        "default": "../../Content/bootstrap.min.css",
-        "cerulean": "../../Content/cerulean.bootstrap.min.css",
-        "darkly": "../../Content/darkly.bootstrap.min.css",
-        "paper": "../../Content/paper.bootstrap.min.css",
-        "superhero": "../../Content/superhero.bootstrap.min.css"
-    }
-    $(function () {
-        var themesheet = $('<link href="' + themes['default'] + '" rel="stylesheet" />');
-        themesheet.appendTo('head');
-        $('.theme-link').click(function () {
-            var themeurl = themes[$(this).attr('data-theme')];
-            themesheet.attr('href', themeurl);
+    <script>
+       var themes = {
+            "default": "../../Content/bootstrap.min.css",
+            "cerulean": "../../Content/cerulean.bootstrap.min.css",
+            "darkly": "../../Content/darkly.bootstrap.min.css",
+            "paper": "../../Content/paper.bootstrap.min.css",
+            "superhero": "../../Content/superhero.bootstrap.min.css"
+        }
+       $(function () {
+           //TODO modify here the default theme setter  themes['darkly']
+            var themesheet = $('<link href="' + themes['darkly'] + '" rel="stylesheet" />');
+            themesheet.appendTo('head');
+            $('.theme-link').click(function () {
+                var themeurl = themes[$(this).attr('data-theme')];
+                themesheet.attr('href', themeurl);
+                //TODO refactor this using the PageId, and use this method only when you are >manager
+                $.ajax("api/StyleCss", {
+                    data: JSON.stringify({
+                        name: $(this).attr('data-theme'),
+                        url: themeurl
+                    }),
+                    type: "post",
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (result) {
+                        notyModule.notyMsg("Style saved successfully", "information");
+                    },
+                    error: function (result) {
+                        notyModule.notyMsg("Something wrong happened!", "error");
+                    }
+                });
+            });
         });
-    });
-</script>
+    </script>
 </body>
 </html>

@@ -18,10 +18,10 @@ namespace WebCms.Controllers
         }
 
         // GET: api/Page/5
+        [AllowAnonymous]
         [Authorize(Roles = "Admin")]
         public IList<Page> GetPage(int id)
         {
-           // var x = _context.Pages.Include("Articles").Where(p => p.Id == id).Select( new Page(){new Article{}});
             var page = from pag in _context.Pages where pag.Id == id select pag;
             return page.ToList();
         }
