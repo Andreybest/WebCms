@@ -10,7 +10,8 @@ namespace WebCms.Controllers
 
         private WebCmsContext _context = new WebCmsContext();
         // GET: api/Page
-          [Authorize(Roles = "Manager,Admin")]
+        [AllowAnonymous]
+        [Authorize(Roles = "Manager,Admin")]
         public IEnumerable<Page> GetPages()
         {
             var pages = from page in _context.Pages select page;
