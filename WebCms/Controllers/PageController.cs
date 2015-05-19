@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using WebCms.Models.DTO;
 using WebCms.ORM.Models;
 
 namespace WebCms.Controllers
@@ -12,10 +13,15 @@ namespace WebCms.Controllers
         // GET: api/Page
         [AllowAnonymous]
         [Authorize(Roles = "Manager,Admin")]
-        public IEnumerable<Page> GetPages()
+        public List<PageDTO> GetPages()
         {
             var pages = from page in _context.Pages select page;
-            return pages.ToList();
+            var pageDto= new List<PageDTO>();
+            foreach (var page in pages)
+            {
+             pageDto.Add(new PageDTO(page));   
+            }
+            return pageDto;
         }
 
         // GET: api/Page/5
