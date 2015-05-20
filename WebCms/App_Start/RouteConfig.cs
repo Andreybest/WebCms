@@ -17,7 +17,7 @@ namespace WebCms
             );
 
             routes.MapHttpRoute(
-                name: "CustomApi",
+                name: "Custom",
                 routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );

@@ -4,27 +4,28 @@ using System.Web.Http;
 using WebCms.Models.DTO;
 using WebCms.ORM.Models;
 
-namespace WebCms.Controllers
+namespace WebCms.ApiControllers
 {
-    public class PageController : ApiController
+    public class PageApiController : ApiController
     {
 
         private WebCmsContext _context = new WebCmsContext();
-        // GET: api/Page
+        // GET: api/PageApi
         [AllowAnonymous]
         [Authorize(Roles = "Manager,Admin")]
         public List<PageDTO> GetPages()
         {
             var pages = from page in _context.Pages select page;
-            var pageDto= new List<PageDTO>();
+            var pageDto = new List<PageDTO>();
             foreach (var page in pages)
             {
-             pageDto.Add(new PageDTO(page));   
+                pageDto.Add(new PageDTO(page));
+
             }
             return pageDto;
         }
 
-        // GET: api/Page/5
+        // GET: api/PageApi/5
         [AllowAnonymous]
         [Authorize(Roles = "Admin")]
         public IList<Page> GetPage(int id)
@@ -33,17 +34,17 @@ namespace WebCms.Controllers
             return page.ToList();
         }
 
-        // POST: api/Page
+        // POST: api/PageApi
         public void Post([FromBody]string value)
         {
         }
 
-        // PUT: api/Page/5
+        // PUT: api/PageApi/5
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE: api/Page/5
+        // DELETE: api/PageApi/5
         public void Delete(int id)
         {
         }

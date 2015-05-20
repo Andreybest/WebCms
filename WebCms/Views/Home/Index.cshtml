@@ -1,7 +1,8 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
-<script src="~/Scripts/ViewModels/PageVM.js"></script>
+﻿<!-- #region Scripts insertions -->
+<script src="~/Scripts/ViewModels/ArticleVM.js"></script>
+<script src="~/Scripts/ViewModels/IndexVM.js"></script>
+
+
 <div class="jumbotron">
     <h1>Web CMS</h1>
     <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
@@ -10,19 +11,19 @@
 
 <div class="row" id="page" data-bind="foreach: pages">
     <div class="col-md-4">
-        <h2  data-bind=" text: PageName"></h2>
+        <h2 data-bind=" text: PageName"></h2>
         <p>
             ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
             enables a clean separation of concerns and gives you full control over markup
             for enjoyable, agile development.
         </p>
-        <p><a class="btn btn-default" href="#">View more &raquo;</a>
+        <p ><a class="btn btn-default" href="#" data-bind="attr: {'id': Id}" onclick="indexApp.indexVM.goToPageDetails(this)">View more &raquo;</a>
         </p>
     </div>
-    
+
 </div>
 <script>
-    ko.applyBindings(pageApp.pageVM, document.getElementById("page"));
-    //init the pages
-    pageApp.pageVM.initPages();
+    ko.applyBindings(indexApp.indexVM, document.getElementById("page"));
+    indexApp.indexVM.initPages();
 </script>
+

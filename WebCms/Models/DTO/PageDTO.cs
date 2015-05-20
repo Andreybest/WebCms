@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using WebCms.ORM.Models;
+﻿using WebCms.ORM.Models;
 
 namespace WebCms.Models.DTO
 {
@@ -10,6 +6,7 @@ namespace WebCms.Models.DTO
     {
         public PageDTO(Page page)
         {
+            Id = page.Id;
             PageName = page.PageName;
             PageOrder = page.PageOrder;
            // Articles = page.Articles;
@@ -18,6 +15,8 @@ namespace WebCms.Models.DTO
         {
             
         }
+
+        public int Id { get; set; }
         public string PageName { get; set; }
         public int? PageOrder { get; set; }
        // public IList<ArticleDTO> Articles { get; set; }

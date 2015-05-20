@@ -5,12 +5,12 @@ using Newtonsoft.Json.Linq;
 using WebCms.Models;
 using WebCms.ORM.Models;
 
-namespace WebCms.Controllers
+namespace WebCms.ApiControllers
 {
-    public class StyleCssController : ApiController
+    public class StyleCssApiController : ApiController
     {
         private WebCmsContext _context = new WebCmsContext();
-        // GET: api/StyleCss
+        // GET: api/StyleCssApi
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };

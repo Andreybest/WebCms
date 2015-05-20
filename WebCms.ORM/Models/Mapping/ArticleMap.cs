@@ -10,11 +10,7 @@ namespace WebCms.ORM.Models.Mapping
             // Primary Key
             this.HasKey(t => t.Id);
 
-            // Properties
-            this.Property(t => t.Type)
-                .HasMaxLength(50);
-
-            // Table & Column Mappings
+        // Table & Column Mappings
             this.ToTable("Article");
             this.Property(t => t.Id).HasColumnName("Id");
             this.Property(t => t.Type).HasColumnName("Type");

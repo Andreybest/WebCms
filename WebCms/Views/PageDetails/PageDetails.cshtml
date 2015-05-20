@@ -1,0 +1,20 @@
+﻿<script src="~/Scripts/ViewModels/ArticleVM.js"></script>
+
+<h2>PageDetails</h2>
+<div id="article">
+    <p data-bind="text:test"></p>
+    <div data-bind="foreach: articles">
+        
+        <article data-bind="text: ArticleAnswers">
+            @*<p data-bind="text: AnswerText"></p>*@
+        </article>
+    </div>
+</div>
+
+<script>
+    //TODO refactor DB, get rid of ArticleAnswers, integrate it into Answers..
+    //TODO remove hardcoded id
+    articleApp.articleVM.initArticlesForPage(1);
+    ko.applyBindings(articleApp.articleVM, document.getElementById("article"));
+</script>
+

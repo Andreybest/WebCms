@@ -8,8 +8,8 @@ namespace WebCms.ORM.Models
         public int Id { get; set; }
         public int ArticleId { get; set; }
         public string AnswerText { get; set; }
-        public Nullable<int> AnswerType { get; set; }
-        public Nullable<bool> IsApproved { get; set; }
+        public int? AnswerType { get; set; }
+        public bool? IsApproved { get; set; }
         public virtual Article Article { get; set; }
     }
 }

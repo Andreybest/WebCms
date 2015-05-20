@@ -11,10 +11,10 @@ namespace WebCms.ORM.Models
         }
 
         public int Id { get; set; }
-        public string Type { get; set; }
+        public int Type { get; set; }
         public int PageId { get; set; }
         public Nullable<int> ArticleOrder { get; set; }
         public virtual Page Page { get; set; }
-        public virtual ICollection<ArticleAnswer> ArticleAnswers { get; set; }
+        public virtual IList<ArticleAnswer> ArticleAnswers { get; set; }
     }
 }

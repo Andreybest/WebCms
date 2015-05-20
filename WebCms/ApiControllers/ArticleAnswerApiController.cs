@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
 
-namespace WebCms.Controllers
+namespace WebCms.ApiControllers
 {
-    public class ArticleAnswerController : ApiController
+    public class ArticleAnswerApiController : ApiController
     {
         // GET: api/ArticleAnswer
         public IEnumerable<string> Get()

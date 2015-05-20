@@ -48,42 +48,42 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+  
     @Scripts.Render("~/bundles/notyNotifications")
     @RenderSection("scripts", required: false)
+    <script src="~/Scripts/ViewModels/IndexVM.js"></script>
     <script>
-       var themes = {
-            "default": "../../Content/bootstrap.min.css",
-            "cerulean": "../../Content/cerulean.bootstrap.min.css",
-            "darkly": "../../Content/darkly.bootstrap.min.css",
-            "paper": "../../Content/paper.bootstrap.min.css",
-            "superhero": "../../Content/superhero.bootstrap.min.css"
-        }
-       $(function () {
-           //TODO modify here the default theme setter  themes['darkly']
-            var themesheet = $('<link href="' + themes['darkly'] + '" rel="stylesheet" />');
-            themesheet.appendTo('head');
-            $('.theme-link').click(function () {
-                var themeurl = themes[$(this).attr('data-theme')];
-                themesheet.attr('href', themeurl);
-                //TODO refactor this using the PageId, and use this method only when you are >manager
-                $.ajax("api/StyleCss", {
-                    data: JSON.stringify({
-                        name: $(this).attr('data-theme'),
-                        url: themeurl
-                    }),
-                    type: "post",
-                    contentType: 'application/json; charset=utf-8',
-                    success: function (result) {
-                        notyModule.notyMsg("Style saved successfully", "information");
-                    },
-                    error: function (result) {
-                        notyModule.notyMsg("Something wrong happened!", "error");
-                    }
-                });
+    var themes = {
+        "default": "../../Content/bootstrap.min.css",
+        "cerulean": "../../Content/cerulean.bootstrap.min.css",
+        "darkly": "../../Content/darkly.bootstrap.min.css",
+        "paper": "../../Content/paper.bootstrap.min.css",
+        "superhero": "../../Content/superhero.bootstrap.min.css"
+    }
+    $(function () {
+        //TODO modify here the default theme setter  themes['darkly']
+        var themesheet = $('<link href="' + themes['darkly'] + '" rel="stylesheet" />');
+        themesheet.appendTo('head');
+        $('.theme-link').click(function () {
+            var themeurl = themes[$(this).attr('data-theme')];
+            themesheet.attr('href', themeurl);
+            //TODO refactor this using the PageId, and use this method only when you are >manager
+            $.ajax("/api/StyleCssApi", {
+                data: JSON.stringify({
+                    name: $(this).attr('data-theme'),
+                    url: themeurl
+                }),
+                type: "post",
+                contentType: 'application/json; charset=utf-8',
+                success: function (result) {
+                    notyModule.notyMsg("Style saved successfully", "information");
+                },
+                error: function (result) {
+                    notyModule.notyMsg("Something wrong happened!", "error");
+                }
             });
         });
-    </script>
+    });
+</script>
 </body>
 </html>

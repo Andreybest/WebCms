@@ -170,19 +170,23 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ArticleAnswerController.cs" />
-    <Compile Include="Controllers\ArticleController.cs" />
+    <Compile Include="ApiControllers\ArticleAnswerApiController.cs" />
+    <Compile Include="ApiControllers\ArticleApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\PageController.cs" />
-    <Compile Include="Controllers\StyleCssController.cs" />
+    <Compile Include="ApiControllers\PageApiController.cs" />
+    <Compile Include="ApiControllers\StyleCssApiController.cs" />
+    <Compile Include="Controllers\PageDetailController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\DTO\ArticleAnswerDTO.cs" />
+    <Compile Include="Models\DTO\ArticleDTO.cs" />
+    <Compile Include="Models\DTO\PageDTO.cs" />
+    <Compile Include="Models\DTO\StyleCssDTO.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\StyleCssDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -200,7 +204,8 @@
     <Content Include="Scripts\knockout.mapping-latest.js" />
     <Content Include="Scripts\knockout.validation.debug.js" />
     <Content Include="Scripts\knockout.validation.js" />
-    <Content Include="Scripts\ViewModels\PageVM.js" />
+    <Content Include="Scripts\ViewModels\IndexVM.js" />
+    <Content Include="Scripts\ViewModels\ArticleVM.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -270,9 +275,11 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\knockout-3.3.0.min.js" />
+    <Content Include="Views\PageDetails\PageDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Page\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
