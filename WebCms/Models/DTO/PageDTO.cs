@@ -9,7 +9,7 @@ namespace WebCms.Models.DTO
             Id = page.Id;
             PageName = page.PageName;
             PageOrder = page.PageOrder;
-           // Articles = page.Articles;
+            PageDescription = page.PageDescription;
         }
         public PageDTO()
         {
@@ -19,6 +19,6 @@ namespace WebCms.Models.DTO
         public int Id { get; set; }
         public string PageName { get; set; }
         public int? PageOrder { get; set; }
-       // public IList<ArticleDTO> Articles { get; set; }
+        public string PageDescription { get; set; }
     }
 }

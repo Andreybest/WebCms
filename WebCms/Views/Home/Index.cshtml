@@ -6,18 +6,14 @@
 <div class="jumbotron">
     <h1>Web CMS</h1>
     <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-   @* <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
 </div>
 
 <div class="row" id="page" data-bind="foreach: pages">
     <div class="col-md-4">
         <h2 data-bind=" text: PageName"></h2>
+        <p data-bind="text:PageDescription"></p>
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p ><a class="btn btn-default" href="#" data-bind="attr: {'id': Id}" onclick="indexApp.indexVM.goToPageDetails(this)">View more &raquo;</a>
+            <a class="btn btn-default" href="#" data-bind="attr: {'id': Id}" onclick="articleApp.articleVM.goToPageDetails(this)">View more &raquo;</a>
         </p>
     </div>
 

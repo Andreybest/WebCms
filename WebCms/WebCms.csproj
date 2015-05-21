@@ -170,7 +170,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="ApiControllers\ArticleAnswerApiController.cs" />
     <Compile Include="ApiControllers\ArticleApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -181,7 +180,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\DTO\ArticleAnswerDTO.cs" />
     <Compile Include="Models\DTO\ArticleDTO.cs" />
     <Compile Include="Models\DTO\PageDTO.cs" />
     <Compile Include="Models\DTO\StyleCssDTO.cs" />

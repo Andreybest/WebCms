@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using WebCms.Models.DTO;
 using WebCms.ORM.Models;
 
 namespace WebCms.ApiControllers
@@ -11,29 +12,23 @@ namespace WebCms.ApiControllers
         // GET: api/ArticleApi
         public List<Article> Get()
         {
-            var articles = (from article in _context.Articles select article).OrderBy(e => e.ArticleOrder).Where(e => e.PageId==1);
-           /* var articleDto = new List<ArticleDTO>();
-            foreach (var article in articles.ToList())
-            {
-                articleDto.Add(new ArticleDTO(article));
-
-            }
-            return articleDto.ToList();*/
+            var articles = from article in _context.Articles select article;
             return articles.ToList();
         }
 
         // GET: api/Article/5
-        public List<Article> Get(int id)
+        public List<ArticleDTO> Get(int id)
         {
-            var articles = (from article in _context.Articles select article).OrderBy(e => e.ArticleOrder).Where(e => e.PageId == id);
-            /* var articleDto = new List<ArticleDTO>();
-             foreach (var article in articles.ToList())
-             {
-                 articleDto.Add(new ArticleDTO(article));
+            //var articles = (from article in _context.Articles select article).OrderBy(e => e.ArticleOrder).Where(e => e.PageId == id);
+            var articles = _context.Articles.Where(e => e.PageId == id).OrderBy(e => e.ArticleOrder);
+            var artDto = new List<ArticleDTO>();
+            foreach (var article in articles)
+            {
+                artDto.Add(new ArticleDTO(article));
 
-             }
-             return articleDto.ToList();*/
-            return articles.ToList();
+            }
+          
+            return artDto;
         }
 
         // POST: api/Article

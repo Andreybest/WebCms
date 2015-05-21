@@ -14,18 +14,16 @@ namespace WebCms.Models.DTO
             Type = article.Type;
             PageId = article.PageId;
             ArticleOrder = article.ArticleOrder;
+            AnswerText = article.AnswerText;
+            IsApproved = article.IsApproved;
 
-        //    var artAnswer = new ArticleAnswerDTO();
-            foreach (var answer in article.ArticleAnswers)
-            {
-              ArticleAnswers.Add(new ArticleAnswerDTO(answer));
-            }
         }
 
         public int Id { get; set; }
         public int Type { get; set; }
         public int PageId { get; set; }
         public int?  ArticleOrder { get; set; }
-        public IList<ArticleAnswerDTO> ArticleAnswers { get; set; }
+        public string AnswerText { get; set; }
+        public bool? IsApproved { get; set; }
     }
 }

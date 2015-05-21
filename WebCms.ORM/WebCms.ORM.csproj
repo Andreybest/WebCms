@@ -47,12 +47,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Article.cs" />
-    <Compile Include="Models\ArticleAnswer.cs" />
     <Compile Include="Models\AspNetRole.cs" />
     <Compile Include="Models\AspNetUser.cs" />
     <Compile Include="Models\AspNetUserClaim.cs" />
     <Compile Include="Models\AspNetUserLogin.cs" />
-    <Compile Include="Models\Mapping\ArticleAnswerMap.cs" />
     <Compile Include="Models\Mapping\ArticleMap.cs" />
     <Compile Include="Models\Mapping\AspNetRoleMap.cs" />
     <Compile Include="Models\Mapping\AspNetUserClaimMap.cs" />

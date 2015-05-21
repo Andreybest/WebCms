@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Web.Configuration
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -84,6 +85,9 @@
             });
         });
     });
-</script>
+
+     
+        var appUrl = @Html.Raw(HttpUtility.JavaScriptStringEncode(WebConfigurationManager.AppSettings["AppBaselUrl"], true));
+  </script>
 </body>
 </html>
