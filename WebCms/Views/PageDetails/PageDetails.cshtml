@@ -5,9 +5,16 @@
     <div data-bind="foreach: articles()">
         <p data-bind="text: AnswerText"></p>
     </div>
+    <div id="rootElement"></div>
+    <div id="newElementCreator">
+        <button class="btn-xs btn-info btn " id="addTitle">Add Title</button>
+        <button class="btn-xs btn-info btn" id="addContent">Add Content</button>
+    </div>
 </div>
 
+<script src="~/Scripts/App/ContentManagementScript.js"></script>
 <script>
     ko.applyBindings(articleApp.articleVM, document.getElementById("article"));
+   
 </script>
 

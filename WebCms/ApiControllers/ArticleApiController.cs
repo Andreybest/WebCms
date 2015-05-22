@@ -17,10 +17,11 @@ namespace WebCms.ApiControllers
         }
 
         // GET: api/Article/5
+        [HttpGet]
         public List<ArticleDTO> Get(int id)
         {
             //var articles = (from article in _context.Articles select article).OrderBy(e => e.ArticleOrder).Where(e => e.PageId == id);
-            var articles = _context.Articles.Where(e => e.PageId == id).OrderBy(e => e.ArticleOrder);
+            var articles = _context.Articles.Where(e => e.PageId == id).OrderBy(e => e.Id);
             var artDto = new List<ArticleDTO>();
             foreach (var article in articles)
             {

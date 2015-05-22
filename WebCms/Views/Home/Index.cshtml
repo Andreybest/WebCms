@@ -1,7 +1,6 @@
 ﻿<!-- #region Scripts insertions -->
-<script src="~/Scripts/ViewModels/ArticleVM.js"></script>
+@*<script src="~/Scripts/ViewModels/ArticleVM.js"></script>*@
 <script src="~/Scripts/ViewModels/IndexVM.js"></script>
-
 
 <div class="jumbotron">
     <h1>Web CMS</h1>
@@ -13,7 +12,7 @@
         <h2 data-bind=" text: PageName"></h2>
         <p data-bind="text:PageDescription"></p>
         <p>
-            <a class="btn btn-default" href="#" data-bind="attr: {'id': Id}" onclick="articleApp.articleVM.goToPageDetails(this)">View more &raquo;</a>
+            <a class="btn btn-default" href="#" data-bind="attr: {'id': Id}" onclick="indexApp.indexVM.goToPageDetails(this)">View more &raquo;</a>
         </p>
     </div>
 
@@ -21,5 +20,7 @@
 <script>
     ko.applyBindings(indexApp.indexVM, document.getElementById("page"));
     indexApp.indexVM.initPages();
+    //http://www.codeproject.com/Tips/766918/Visual-Studio-Use-HTTPS-SSL-On-Web-Application-Pro
+
 </script>
 
