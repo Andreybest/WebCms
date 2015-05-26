@@ -1,7 +1,9 @@
 ﻿using System.Linq;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -19,6 +21,11 @@ namespace WebCms.Controllers
         {
         }
 
+         public static bool GetUserRole(string role)
+         {
+            var haveThisRole = System.Web.HttpContext.Current.User.IsInRole(role);
+            return haveThisRole;
+         }
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
 using WebCms.Models.DTO;
@@ -20,7 +21,6 @@ namespace WebCms.ApiControllers
         [HttpGet]
         public List<ArticleDTO> Get(int id)
         {
-            //var articles = (from article in _context.Articles select article).OrderBy(e => e.ArticleOrder).Where(e => e.PageId == id);
             var articles = _context.Articles.Where(e => e.PageId == id).OrderBy(e => e.Id);
             var artDto = new List<ArticleDTO>();
             foreach (var article in articles)
@@ -28,7 +28,7 @@ namespace WebCms.ApiControllers
                 artDto.Add(new ArticleDTO(article));
 
             }
-          
+
             return artDto;
         }
 
@@ -37,9 +37,22 @@ namespace WebCms.ApiControllers
         {
         }
 
+
         // PUT: api/Article/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]List<ArticleDTO> articles)
         {
+            Article art = new Article();
+
+            foreach (var json in articles)
+            {
+                art.PageId = json.PageId;
+                art.Type = json.Type;
+                art.AnswerText = json.AnswerText;
+                art.IsApproved = json.IsApproved;
+
+                _context.Entry(art).State = EntityState.Added;
+                _context.SaveChanges();
+            }
         }
 
         // DELETE: api/Article/5

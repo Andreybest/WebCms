@@ -1,20 +1,45 @@
-﻿<script src="~/Scripts/ViewModels/ArticleVM.js"></script>
+﻿@using WebCms.Controllers
+<script src="~/Scripts/ViewModels/ArticleVM.js"></script>
 
 <h2>PageDetails</h2>
 <div id="article">
     <div data-bind="foreach: articles()">
-        <p data-bind="text: AnswerText"></p>
+        @if (AccountController.GetUserRole("Admin"))
+        {
+           <!-- ko if: ($data.AnswerText )-->
+            <textarea class="form-control" data-bind="value: AnswerText"></textarea>
+            <br />
+           <!-- /ko -->
+           <!-- ko if: ($data.answerText )-->
+            <textarea class="form-control"data-bind="value: answerText"></textarea>
+            <br />
+           <!-- /ko -->
+        }
+        else
+        {
+        <!-- ko if: ($data.AnswerText )-->
+            <p data-bind="text: AnswerText"></p>
+        <!-- /ko -->
+        <!-- ko if: ($data.answerText )-->
+            <p data-bind="text: answerText"></p>
+        <!-- /ko -->
+        }
     </div>
-    <div id="rootElement"></div>
-    <div id="newElementCreator">
-        <button class="btn-xs btn-info btn " id="addTitle">Add Title</button>
-        <button class="btn-xs btn-info btn" id="addContent">Add Content</button>
-    </div>
+    <br />
+    @if (AccountController.GetUserRole("Admin"))
+    {
+        <div id="newElementCreator">
+            <div class="btn-group" role="group" aria-label="template">
+                <button class="btn-xs btn-info btn " id="addTitle">Add Title</button>
+                <button class="btn-xs btn-info btn" id="addContent">Add Content</button>
+            </div>
+            <button class="btn-sm btn-default btn" onclick="articleApp.articleVM.saveArticle(articleApp.articleVM.pageId)">Save</button>
+        </div>
+    }
 </div>
 
 <script src="~/Scripts/App/ContentManagementScript.js"></script>
 <script>
     ko.applyBindings(articleApp.articleVM, document.getElementById("article"));
-   
 </script>
 

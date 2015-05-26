@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
 
 namespace WebCms.ORM.Models
 {
     public partial class Article
     {
-        
         public int Id { get; set; }
         public int Type { get; set; }
         public int PageId { get; set; }
