@@ -39,6 +39,7 @@ namespace WebCms.ApiControllers
 
 
         // PUT: api/Article/5
+        [Authorize(Roles = "Admin, Manager")]
         public void Put(int id, [FromBody]List<ArticleDTO> articles)
         {
             Article art = new Article();
@@ -54,10 +55,15 @@ namespace WebCms.ApiControllers
                 _context.SaveChanges();
             }
         }
-
+        [Authorize(Roles = "Admin, Manager")]
         // DELETE: api/Article/5
-        public void Delete(int id)
+        public void Delete([FromBody]ArticleDTO article)
         {
+            if (article.Id == 0) return;
+            var articleToDelete = _context.Articles.Single(e => e.Id == article.Id);
+            _context.Entry(articleToDelete).State = EntityState.Deleted;
+
+            _context.SaveChanges();
         }
     }
 }

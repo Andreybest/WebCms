@@ -2,18 +2,36 @@
 <script src="~/Scripts/ViewModels/ArticleVM.js"></script>
 
 <h2>PageDetails</h2>
+
 <div id="article">
     <div data-bind="foreach: articles()">
-        @if (AccountController.GetUserRole("Admin"))
+        @if (AccountController.GetUserRole("Admin") || AccountController.GetUserRole("Manager") || AccountController.GetUserRole("Editor"))
         {
-           <!-- ko if: ($data.AnswerText )-->
-            <textarea class="form-control" data-bind="value: AnswerText"></textarea>
+            <section style="display: flex;">
+                <!-- ko if: ($data.Type && $data.Type==1) || ($data.type && $data.type==1)-->
+                <!-- ko if: ($data.AnswerText) -->
+                <input class="form-control" data-bind="value: AnswerText">
+                <!-- /ko -->
+                <!-- ko if: ($data.answerText)-->
+                <input class="form-control" data-bind="value: answerText">
+                <!-- /ko -->
+                <!-- /ko -->
+                <!-- ko if: ($data.Type && $data.Type==2) || ($data.type && $data.type==2) -->
+                <!-- ko if: ($data.AnswerText )-->
+                <textarea class="form-control" data-bind="value: AnswerText"></textarea>
+                <!-- /ko -->
+                <!-- ko if: ($data.answerText )-->
+                <textarea class="form-control" data-bind="value: answerText"></textarea>
+                <!-- /ko -->
+                <!-- /ko -->
+                @if (AccountController.GetUserRole("Admin") || AccountController.GetUserRole("Manager"))
+                {
+                    <button class="btn-xs btn-danger btn" data-bind="click:$root.deleteArticle"><i class="glyphicon glyphicon-remove"></i></button>
+                    <button class="btn-xs btn-primary btn" data-bind="click:$root.deleteArticle"><i class="glyphicon glyphicon-floppy-disk"></i></button>
+                }
+
+            </section>
             <br />
-           <!-- /ko -->
-           <!-- ko if: ($data.answerText )-->
-            <textarea class="form-control"data-bind="value: answerText"></textarea>
-            <br />
-           <!-- /ko -->
         }
         else
         {
@@ -26,16 +44,18 @@
         }
     </div>
     <br />
-    @if (AccountController.GetUserRole("Admin"))
+    @if (AccountController.GetUserRole("Admin") || AccountController.GetUserRole("Manager"))
     {
         <div id="newElementCreator">
             <div class="btn-group" role="group" aria-label="template">
-                <button class="btn-xs btn-info btn " id="addTitle">Add Title</button>
-                <button class="btn-xs btn-info btn" id="addContent">Add Content</button>
+                <button class="btn-sm btn-info btn " id="addTitle">Add Title</button>
+                <button class="btn-sm btn-info btn" id="addContent">Add Content</button>
+                <button class="btn-sm btn-default btn" onclick="articleApp.articleVM.saveArticle(articleApp.articleVM.pageId)">Save</button>
+
             </div>
-            <button class="btn-sm btn-default btn" onclick="articleApp.articleVM.saveArticle(articleApp.articleVM.pageId)">Save</button>
         </div>
     }
+    <p data-bind="text: isSaveEnabled"></p>
 </div>
 
 <script src="~/Scripts/App/ContentManagementScript.js"></script>

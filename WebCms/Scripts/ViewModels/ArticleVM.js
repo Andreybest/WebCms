@@ -3,16 +3,16 @@
 
     var articleVM = {
         articleNumber: 0,
+        isSaveEnabled: ko.observable(false),
         articles: ko.observableArray(),
-        article: function (Type, PageId, ArticleOrder, AnswerText, IsApproved) {
-            // this.id = ko.observable(id),
-            this.Type = Type,//ko.observable(Type),
-            this.PageId = PageId,// ko.observable(PageId),
-            this.ArticleOrder = ArticleOrder,//ko.observable(ArticleOrder),
-            this.AnswerText = AnswerText,//ko.observable(AnswerText),
-            this.IsApproved = IsApproved; // ko.observable(IsApproved);
+        article: function (Id, Type, PageId, ArticleOrder, AnswerText, IsApproved) {
+                this.Id = Id,
+                this.Type = Type,
+                this.PageId = PageId,
+                this.ArticleOrder = ArticleOrder,
+                this.AnswerText = AnswerText,
+                this.IsApproved = IsApproved;
         },
-        test: ko.observable("testItem"),
         pageId: window.location.href.substring(window.location.href.lastIndexOf('/') + 1),
         initArticlesForPage: function (id) {
             //TODO Hardcoded URL
@@ -35,7 +35,7 @@
             $.ajax("https://localhost:5555/api/ArticleApi/" + id, {
                 type: "put",
                 data: JSON.stringify(
-                     articleApp.articleVM.articles()
+                    articleApp.articleVM.articles()
                 ),
                 contentType: 'application/json; charset=utf-8',
                 success: function (result) {
@@ -47,11 +47,47 @@
                     notyModule.notyMsg("Something wrong happened when saving articles!", "error");
                 }
             });
+        },
+        deleteArticle: function (selectedArticle) {
+            $.ajax("https://localhost:5555/api/ArticleApi/", {
+                type: "delete",
+                data: JSON.stringify(
+                    selectedArticle
+                ),
+                contentType: 'application/json; charset=utf-8',
+                success: function (result) {
+                    articleVM.articles.remove(selectedArticle);
+                    notyModule.notyMsg("Articles deleted successfully", "information");
+                },
+                error: function (result) {
+                    notyModule.notyMsg("Something wrong happened when saving articles!", "error");
+                }
+            });
         }
 
     }
+   /* var subscribe = articleVM.articles.subscribe(function (newValue) {
+        if (newValue != undefined) {
+            for (var i = 0; i < newValue.length; i++) {
+                newValue[i].subscribe(function (values) {
+                    alert("ssasss");
+                });
+            }
+        }
+    });*/
+
+    /*rticleVM.articles.subscribe(function () {
+        ko.utils.arrayForEach(articleVM.articles, function (item) {
+            item.subscribe(function () {
+                alert("da");
+                //code to fire when selected changes
+            });
+        });
+    });
+*/
     articleContext.articleVM = articleVM;
 
     //init articles page
     articleVM.initArticlesForPage(articleVM.pageId);
+
 })(articleApp)

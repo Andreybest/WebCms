@@ -6,7 +6,7 @@ namespace WebCms.Models.DTO
     {
         public ArticleDTO(Article article)
         {
-           // Id = article.Id;
+            Id = article.Id;
             Type = article.Type;
             PageId = article.PageId;
             ArticleOrder = article.ArticleOrder;
@@ -20,7 +20,7 @@ namespace WebCms.Models.DTO
             
         }
 
-       // public int Id { get; set; }
+        public int Id { get; set; }
         public int Type { get; set; }
         public int PageId { get; set; }
         public int?  ArticleOrder { get; set; }

@@ -27,8 +27,7 @@ namespace WebCms.ApiControllers
 
         // GET: api/PageApi/5
         [AllowAnonymous]
-        [Authorize(Roles = "Admin")]
-        public IList<Page> GetPage(int id)
+       public IList<Page> GetPage(int id)
         {
             var page = from pag in _context.Pages where pag.Id == id select pag;
             return page.ToList();

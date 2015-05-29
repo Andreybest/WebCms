@@ -1,7 +1,42 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "Descriere";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+<h2>@ViewBag.Title</h2>
+<h3>Aplicatie de tip Web CMS (Content Management System) orientata pe servicii</h3>
 
-<p>Use this area to provide additional information.</p>
+<p>
+    O aplicatie de tip CMS permite editarea, publicarea, modificarea si gestiunea unui continut de interes prin intermediul
+    unei interfete de editare centralizate. Un Web CMS reprezinta un caz particular de CMS ce adreseaza problema
+    dezvoltarii site-urilor Web. Se doreste dezvoltarea unei alternative orientate pe servicii Web pentru aplicatii de tip
+    Web CMS
+</p>
+
+<h4>Specificatii proiect:</h4>
+<p>Proiectele dezvoltate vor respecta, minim, urmatorul set de specificatii:</p>
+<ol>
+    <li>
+         Aplicatiile vor fi dezvoltate dupa o arhitectura pe 3 nivele: un nivel destinat datelor si accesului la date, un
+        nivel dezvoltat logicii de aplicatie si un nivel destinat interfetei cu utilizatorul.
+    </li>
+    <li>
+        Interfetele de acces dintre doua nivele succesive (de exemplu, accesul dintre nivelul de logica si cel al datelor)
+        vor fi implementate prin intermediul serviciilorWeb.
+    </li>
+    <li> Nivelul destinat logicii de aplicatie va include minim un model de compunere statica de servicii.</li>
+    <li>
+        Interactiunea cu utilizatorii finali (nivelul User Interface/Logic) va include componente de tip servicii Web
+        si aplicatiile cu rol de consumator corespunzatoare.
+    </li>
+    <li>
+         Fiecare proiect va include ın mod obligatoriu un set minim de cerint¸e de securitate, dupa cum urmeaza:
+        (a) pentru nivelul de date se vor specifica si implementa restrictii de acces;
+        (b) (ın cazul utilizarii unui SGBD de tip SQL) interogarile bazelor de date vor fi parametrizate;
+        (c) fiecare proiect va include o logica de gestiune a utilizatorilor si a drepturilor acestora;
+        (d) comunicatiile cu utilizatorii finali vor fi realizate utilizand un protocol securizat (de exemplu, HTTPS).
+    </li>
+    <li>
+        Fiecare proiect va include ın mod obligatoriu un modul de notificari (de exemplu, ın cadrul unui Web CMS,
+        atat editorul ,,master”, cat si administratorul site-ului vor fi notificati asupra modificarilor realizate de un alt
+        utilizator cu rol de editor)
+    </li>
+</ol>
