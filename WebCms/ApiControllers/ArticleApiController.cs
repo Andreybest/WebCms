@@ -42,7 +42,7 @@ namespace WebCms.ApiControllers
         [Authorize(Roles = "Admin, Manager")]
         public void Put(int id, [FromBody]List<ArticleDTO> articles)
         {
-            Article art = new Article();
+            var art = new Article();
 
             foreach (var json in articles)
             {

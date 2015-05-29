@@ -32,7 +32,7 @@ namespace WebCms.ApiControllers
             cssStyle.Name = json.Name;
             cssStyle.Url = json.Url;
 
-            _context.Entry(cssStyle).State = EntityState.Added;
+            _context.Entry(cssStyle).State = EntityState.Modified;
             return _context.SaveChanges();
         }
 

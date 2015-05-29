@@ -9,5 +9,5 @@ $("#addContent").click(function () {
 
 var pushToArticleArrays = function (newArt) {
     articleApp.articleVM.articles.push(newArt);
-   // articleApp.articleVM.articleNumber(true);
+    articleApp.articleVM.newArticles.push(newArt);
 }

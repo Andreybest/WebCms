@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
 using WebCms.Models.DTO;
@@ -15,7 +16,7 @@ namespace WebCms.ApiControllers
         [Authorize(Roles = "Manager,Admin")]
         public List<PageDTO> GetPages()
         {
-            var pages = from page in _context.Pages select page;
+            var pages = (from page in _context.Pages select page).OrderBy(e => e.Id);
             var pageDto = new List<PageDTO>();
             foreach (var page in pages)
             {
@@ -27,15 +28,25 @@ namespace WebCms.ApiControllers
 
         // GET: api/PageApi/5
         [AllowAnonymous]
-       public IList<Page> GetPage(int id)
+        public IList<Page> GetPage(int id)
         {
             var page = from pag in _context.Pages where pag.Id == id select pag;
             return page.ToList();
         }
 
         // POST: api/PageApi
-        public void Post([FromBody]string value)
+        [Authorize(Roles = "Admin")]
+        public void Post([FromBody]PageDTO json)
         {
+            var art = new Page
+            {
+                Id = json.Id,
+                PageName = json.PageName,
+                PageDescription = json.PageDescription
+            };
+
+            _context.Entry(art).State = EntityState.Added;
+            _context.SaveChanges();
         }
 
         // PUT: api/PageApi/5

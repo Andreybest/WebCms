@@ -1,4 +1,5 @@
 ﻿@using System.Web.Configuration
+@using WebCms.Controllers
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,17 +26,20 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                  @*  <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Themes <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#" data-theme="default" class="theme-link">Default</a></li>
-                            <li><a href="#" data-theme="cerulean" class="theme-link">Cerulean</a></li>
-                            <li><a href="#" data-theme="darkly" class="theme-link">Darkly</a></li>
-                            <li><a href="#" data-theme="paper" class="theme-link">Paper</a></li>
-                            <li><a href="#" data-theme="superhero" class="theme-link">Superhero</a></li>
-                        </ul>
-                    </li>
+                    @*  <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                    @if (AccountController.GetUserRole("Admin"))
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Themes <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" data-theme="default" class="theme-link">Default</a></li>
+                                <li><a href="#" data-theme="cerulean" class="theme-link">Cerulean</a></li>
+                                <li><a href="#" data-theme="darkly" class="theme-link">Darkly</a></li>
+                                <li><a href="#" data-theme="paper" class="theme-link">Paper</a></li>
+                                <li><a href="#" data-theme="superhero" class="theme-link">Superhero</a></li>
+                            </ul>
+                        </li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -49,45 +53,45 @@
         </footer>
     </div>
 
-  
+
     @Scripts.Render("~/bundles/notyNotifications")
     @RenderSection("scripts", required: false)
     <script src="~/Scripts/ViewModels/IndexVM.js"></script>
     <script>
-    var themes = {
-        "default": "../../Content/bootstrap.min.css",
-        "cerulean": "../../Content/cerulean.bootstrap.min.css",
-        "darkly": "../../Content/darkly.bootstrap.min.css",
-        "paper": "../../Content/paper.bootstrap.min.css",
-        "superhero": "../../Content/superhero.bootstrap.min.css"
-    }
-    $(function () {
-        //TODO modify here the default theme setter  themes['darkly']
-        var themesheet = $('<link href="' + themes['darkly'] + '" rel="stylesheet" />');
-        themesheet.appendTo('head');
-        $('.theme-link').click(function () {
-            var themeurl = themes[$(this).attr('data-theme')];
-            themesheet.attr('href', themeurl);
-            //TODO refactor this using the PageId, and use this method only when you are >manager
-            $.ajax("/api/StyleCssApi", {
-                data: JSON.stringify({
-                    name: $(this).attr('data-theme'),
-                    url: themeurl
-                }),
-                type: "post",
-                contentType: 'application/json; charset=utf-8',
-                success: function (result) {
-                    notyModule.notyMsg("Style saved successfully", "information");
-                },
-                error: function (result) {
-                    notyModule.notyMsg("Something wrong happened!", "error");
-                }
+        var themes = {
+            "default": "../../Content/bootstrap.min.css",
+            "cerulean": "../../Content/cerulean.bootstrap.min.css",
+            "darkly": "../../Content/darkly.bootstrap.min.css",
+            "paper": "../../Content/paper.bootstrap.min.css",
+            "superhero": "../../Content/superhero.bootstrap.min.css"
+        }
+        $(function () {
+            //TODO modify here the default theme setter  themes['darkly']
+            var themesheet = $('<link href="' + themes['darkly'] + '" rel="stylesheet" />');
+            themesheet.appendTo('head');
+            $('.theme-link').click(function () {
+                var themeurl = themes[$(this).attr('data-theme')];
+                themesheet.attr('href', themeurl);
+                //TODO refactor this using the PageId, and use this method only when you are >manager
+                $.ajax("/api/StyleCssApi", {
+                    data: JSON.stringify({
+                        name: $(this).attr('data-theme'),
+                        url: themeurl
+                    }),
+                    type: "post",
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (result) {
+                        notyModule.notyMsg("Style saved successfully", "information");
+                    },
+                    error: function (result) {
+                        notyModule.notyMsg("Something wrong happened!", "error");
+                    }
+                });
             });
         });
-    });
 
-     
+
         var appUrl = @Html.Raw(HttpUtility.JavaScriptStringEncode(WebConfigurationManager.AppSettings["AppBaselUrl"], true));
-  </script>
+    </script>
 </body>
 </html>

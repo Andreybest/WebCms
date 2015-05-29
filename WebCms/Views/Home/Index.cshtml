@@ -1,12 +1,20 @@
-﻿<!-- #region Scripts insertions -->
-@*<script src="~/Scripts/ViewModels/ArticleVM.js"></script>*@
+﻿@using WebCms.Controllers
+<!-- #region Scripts insertions -->
+
 <script src="~/Scripts/ViewModels/IndexVM.js"></script>
 
 <div class="jumbotron">
     <h1>Web CMS</h1>
     <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
 </div>
-
+@if (AccountController.GetUserRole("Admin") || AccountController.GetUserRole("Manager")) { 
+    <div>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-default " data-toggle="modal" data-target="#addPageModal" title="Add new page" onclick="indexApp.indexVM.createNewPage()">
+        <i class="glyphicon glyphicon-plus"></i>
+    </button>
+</div>
+}
 <div class="row" id="page" data-bind="foreach: pages">
     <div class="col-md-4">
         <h2 data-bind=" text: PageName"></h2>
@@ -17,6 +25,33 @@
     </div>
 
 </div>
+
+
+
+@if (AccountController.GetUserRole("Admin") || AccountController.GetUserRole("Manager"))
+{
+    <!-- Modal -->
+    <div class="modal fade" id="addPageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Add new page</h4>
+                </div>
+                <div class="modal-body" data-bind="with: newPage">
+                    <p>Page title</p>
+                    <input class=" form-control" data-bind="value: pageName"/>
+                    <p>Page description</p>
+                    <textarea class="form-control" data-bind="value:pageDescription"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="indexApp.indexVM.saveNewPage()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 <script>
     ko.applyBindings(indexApp.indexVM, document.getElementById("page"));
     indexApp.indexVM.initPages();

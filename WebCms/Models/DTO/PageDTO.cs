@@ -8,7 +8,6 @@ namespace WebCms.Models.DTO
         {
             Id = page.Id;
             PageName = page.PageName;
-            PageOrder = page.PageOrder;
             PageDescription = page.PageDescription;
         }
         public PageDTO()

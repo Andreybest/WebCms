@@ -3,8 +3,8 @@
 
     var articleVM = {
         articleNumber: 0,
-        isSaveEnabled: ko.observable(false),
         articles: ko.observableArray(),
+        newArticles: ko.observableArray(),
         article: function (Id, Type, PageId, ArticleOrder, AnswerText, IsApproved) {
                 this.Id = Id,
                 this.Type = Type,
@@ -35,11 +35,11 @@
             $.ajax("https://localhost:5555/api/ArticleApi/" + id, {
                 type: "put",
                 data: JSON.stringify(
-                    articleApp.articleVM.articles()
+                    articleApp.articleVM.newArticles()
                 ),
                 contentType: 'application/json; charset=utf-8',
                 success: function (result) {
-                    //   articleVM.newArticles([]);
+                       articleVM.newArticles([]);
                     notyModule.notyMsg("Articles updated successfully", "information");
                 },
                 error: function (result) {
@@ -66,25 +66,7 @@
         }
 
     }
-   /* var subscribe = articleVM.articles.subscribe(function (newValue) {
-        if (newValue != undefined) {
-            for (var i = 0; i < newValue.length; i++) {
-                newValue[i].subscribe(function (values) {
-                    alert("ssasss");
-                });
-            }
-        }
-    });*/
 
-    /*rticleVM.articles.subscribe(function () {
-        ko.utils.arrayForEach(articleVM.articles, function (item) {
-            item.subscribe(function () {
-                alert("da");
-                //code to fire when selected changes
-            });
-        });
-    });
-*/
     articleContext.articleVM = articleVM;
 
     //init articles page

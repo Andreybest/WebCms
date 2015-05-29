@@ -27,7 +27,6 @@
                 @if (AccountController.GetUserRole("Admin") || AccountController.GetUserRole("Manager"))
                 {
                     <button class="btn-xs btn-danger btn" data-bind="click:$root.deleteArticle"><i class="glyphicon glyphicon-remove"></i></button>
-                    <button class="btn-xs btn-primary btn" data-bind="click:$root.deleteArticle"><i class="glyphicon glyphicon-floppy-disk"></i></button>
                 }
 
             </section>
@@ -55,7 +54,6 @@
             </div>
         </div>
     }
-    <p data-bind="text: isSaveEnabled"></p>
 </div>
 
 <script src="~/Scripts/App/ContentManagementScript.js"></script>
