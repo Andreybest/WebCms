@@ -23,6 +23,7 @@ namespace WebCms.ApiControllers
         }
 
         // POST: api/StyleCss
+        [Authorize(Roles = "Manager,Admin")]
         public int Post([FromBody]JObject jsonData)
         {
             var json = jsonData.ToObject<StyleCssDTO>();
