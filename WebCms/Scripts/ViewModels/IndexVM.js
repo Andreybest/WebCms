@@ -3,12 +3,13 @@
     var indexVM = {
         newPage: ko.observable(),
         page:  function (id, pageName, pageDescription) {
-                this.id = ko.observable(id),
-                this.pageName = ko.observable(pageName),
-                this.pageDescription = ko.observable(pageDescription);
+            this.id = id, // ko.observable(id),
+                this.pageName = pageName, // ko.observable(pageName),
+                this.pageDescription = pageDescription; // ko.observable(pageDescription);
         },
         pages: ko.observableArray(),
         initPages: function () {
+            $("#savePageBtn").prop('disabled', true);
             $.ajax("api/PageApi", {
                 type: "get",
                 contentType: 'application/json; charset=utf-8',
@@ -25,11 +26,19 @@
         goToPageDetails: function (selectedPage) {
             window.location.assign(appUrl + "PageDetail/Index/" + selectedPage.id);
         },
-        createNewPage: function() {
-            var pgn = new indexVM.page();
+        emptyPageCreationForm: function () {
+            $("#savePageBtn").prop('disabled', true);
+            $("#pageTitle").val(null);
+            $("#pageDescription").val(null);
+        },
+        createNewPage: function () {
+            var pageTitle = $("#pageTitle").val();
+            var pageDescription = $("#pageDescription").val();
+            var pgn = new indexVM.page(0 , pageTitle, pageDescription);
             indexVM.newPage(pgn);
         },
         saveNewPage: function () {
+            indexVM.createNewPage();
             debugger;
             indexVM.pages.push(indexVM.newPage());
             $.ajax("https://localhost:5555/api/PageApi/", {

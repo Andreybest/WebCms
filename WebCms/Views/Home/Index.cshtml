@@ -10,7 +10,7 @@
 @if (AccountController.GetUserRole("Admin") || AccountController.GetUserRole("Manager")) { 
     <div>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-default " data-toggle="modal" data-target="#addPageModal" title="Add new page" onclick="indexApp.indexVM.createNewPage()">
+    <button type="button" class="btn btn-default " data-toggle="modal" data-target="#addPageModal" title="Add new page" onclick="indexApp.indexVM.emptyPageCreationForm()">
         <i class="glyphicon glyphicon-plus"></i>
     </button>
 </div>
@@ -40,19 +40,26 @@
                 </div>
                 <div class="modal-body" data-bind="with: newPage">
                     <p>Page title</p>
-                    <input class=" form-control" data-bind="value: pageName"/>
+                    <input id="pageTitle"class=" form-control" data-bind="value: pageName"/>
                     <p>Page description</p>
-                    <textarea class="form-control" data-bind="value:pageDescription"></textarea>
+                    <textarea id="pageDescription" class="form-control" data-bind="value: pageDescription"></textarea>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="indexApp.indexVM.saveNewPage()">Save changes</button>
+                    <button id="savePageBtn" type="button" class="btn btn-primary" onclick="indexApp.indexVM.saveNewPage()">Save changes</button>
                 </div>
             </div>
         </div>
     </div>
 }
 <script>
+    $("#pageTitle").change(function() {
+        $("#savePageBtn").prop('disabled', false);
+    });
+    $("#pageDescription").change(function () {
+        $("#savePageBtn").prop('disabled', false);
+    });
+
     ko.applyBindings(indexApp.indexVM, document.getElementById("page"));
     indexApp.indexVM.initPages();
     //http://www.codeproject.com/Tips/766918/Visual-Studio-Use-HTTPS-SSL-On-Web-Application-Pro
