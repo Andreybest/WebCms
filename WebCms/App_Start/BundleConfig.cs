@@ -27,6 +27,7 @@ namespace WebCms
             bundles.Add(new ScriptBundle("~/bundles/notyNotifications").Include(
                      "~/Scripts/noty/jquery.noty.js",
                       "~/Scripts/noty/layouts/bottomLeft.js",
+                      "~/Scripts/noty/layouts/center.js",
                       "~/Scripts/noty/themes/default.js",
                       "~/Scripts/noty/Noty.js"
                       )

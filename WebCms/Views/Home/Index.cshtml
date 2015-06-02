@@ -7,20 +7,36 @@
     <h1>Web CMS</h1>
     <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
 </div>
-@if (AccountController.GetUserRole("Admin") || AccountController.GetUserRole("Manager")) { 
+@if (AccountController.GetUserRole("Admin") || AccountController.GetUserRole("Manager"))
+{
     <div>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-default " data-toggle="modal" data-target="#addPageModal" title="Add new page" onclick="indexApp.indexVM.emptyPageCreationForm()">
-        <i class="glyphicon glyphicon-plus"></i>
-    </button>
-</div>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-default " data-toggle="modal" data-target="#addPageModal" title="Add new page" onclick="indexApp.indexVM.emptyPageCreationForm()">
+            <i class="glyphicon glyphicon-plus"></i>
+        </button>
+    </div>
 }
 <div class="row" id="page" data-bind="foreach: pages">
-    <div class="col-md-4">
-        <h2 data-bind=" text: PageName"></h2>
-        <p data-bind="text:PageDescription"></p>
+    <div class="col-md-4 pageDiv">
+        @if (AccountController.GetUserRole("Admin") || AccountController.GetUserRole("Manager"))
+        {
+            <input class="form-control" data-bind="value: PageName">
+            <br />
+            <textarea class="form-control" data-bind="value:PageDescription"></textarea>
+       
+        }
+        else
+        {
+            <h2 data-bind=" text: PageName"></h2>
+            <p data-bind="text:PageDescription"></p>
+        }
         <p>
             <a class="btn btn-default" href="#" data-bind="attr: {'id': Id}" onclick="indexApp.indexVM.goToPageDetails(this)">View more &raquo;</a>
+            @if (AccountController.GetUserRole("Admin") || AccountController.GetUserRole("Manager"))
+            {
+                <a class="btn btn-danger" href="#" data-bind="click:$root.deletePage">Delete</a>
+                <a class="btn btn-success" href="#" data-bind="click:$root.savePage">Save</a>
+            }
         </p>
     </div>
 
@@ -40,29 +56,33 @@
                 </div>
                 <div class="modal-body" data-bind="with: newPage">
                     <p>Page title</p>
-                    <input id="pageTitle"class=" form-control" data-bind="value: pageName"/>
+                    <input id="pageTitle" class=" form-control" data-bind="value: pageName" />
                     <p>Page description</p>
                     <textarea id="pageDescription" class="form-control" data-bind="value: pageDescription"></textarea>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button id="savePageBtn" type="button" class="btn btn-primary" onclick="indexApp.indexVM.saveNewPage()">Save changes</button>
+                    <button id="savePageBtn" type="button" class="btn btn-primary"  onclick="indexApp.indexVM.saveNewPage()">Save changes</button>
                 </div>
             </div>
         </div>
     </div>
 }
 <script>
-    $("#pageTitle").change(function() {
+    //For the modal
+    $("#pageTitle").change(function () {
         $("#savePageBtn").prop('disabled', false);
     });
     $("#pageDescription").change(function () {
         $("#savePageBtn").prop('disabled', false);
     });
 
+ 
+
     ko.applyBindings(indexApp.indexVM, document.getElementById("page"));
     indexApp.indexVM.initPages();
     //http://www.codeproject.com/Tips/766918/Visual-Studio-Use-HTTPS-SSL-On-Web-Application-Pro
+   
 
 </script>
 

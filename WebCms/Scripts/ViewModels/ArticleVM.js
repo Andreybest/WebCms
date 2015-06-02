@@ -60,7 +60,7 @@
                     notyModule.notyMsg("Articles deleted successfully", "information");
                 },
                 error: function (result) {
-                    notyModule.notyMsg("Something wrong happened when saving articles!", "error");
+                    notyModule.notyMsg("Something wrong happened while deleting the article!", "error");
                 }
             });
         }

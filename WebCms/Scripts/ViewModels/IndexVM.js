@@ -22,7 +22,7 @@
                     notyModule.notyMsg("Something wrong happened when getting pages, probably you are not allowed to!", "error");
                 }
             });
-        },
+          },
         goToPageDetails: function (selectedPage) {
             window.location.assign(appUrl + "PageDetail/Index/" + selectedPage.id);
         },
@@ -39,7 +39,6 @@
         },
         saveNewPage: function () {
             indexVM.createNewPage();
-            debugger;
             indexVM.pages.push(indexVM.newPage());
             $.ajax("https://localhost:5555/api/PageApi/", {
                 type: "post",
@@ -54,6 +53,59 @@
                 error: function (result) {
 
                     notyModule.notyMsg("Something wrong happened when saving the new page!", "error");
+                }
+            });
+        },
+        deletePage: function (selectedPage) {
+            noty({
+                layout: 'center',
+                text: 'Are you sure?',
+                buttons: [
+                    {
+                        addClass: 'btn btn-primary', text: 'Yes', onClick: function ($noty) {
+
+                            $.ajax("https://localhost:5555/api/PageApi/", {
+                                type: "delete",
+                                data: JSON.stringify(
+                                    selectedPage
+                                ),
+                                contentType: 'application/json; charset=utf-8',
+                                success: function (result) {
+                                    indexVM.pages.remove(selectedPage);
+                                    notyModule.notyMsg("Page deleted successfully", "information");
+                                },
+                                error: function (result) {
+                                    notyModule.notyMsg("Something wrong happened when deleting the page!", "error");
+                                }
+                            });
+
+                            $noty.close();
+                           
+                        }
+                    },
+                    {
+                        addClass: 'btn btn-danger', text: 'Cancel', onClick: function ($noty) {
+                            $noty.close();
+                            
+                        }
+                    }
+                ]
+            });
+       
+        },
+        savePage:function(selectedPage) {
+            $.ajax("https://localhost:5555/api/PageApi/" + selectedPage.Id, {
+                type: "put",
+                data: JSON.stringify(
+                    selectedPage
+                ),
+                contentType: 'application/json; charset=utf-8',
+                success: function (result) {
+                    notyModule.notyMsg("Page updated successfully", "information");
+                },
+                error: function (result) {
+
+                    notyModule.notyMsg("Something wrong happened when saving page!", "error");
                 }
             });
         }

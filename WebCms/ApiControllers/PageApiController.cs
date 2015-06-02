@@ -13,7 +13,6 @@ namespace WebCms.ApiControllers
         private WebCmsContext _context = new WebCmsContext();
         // GET: api/PageApi
         [AllowAnonymous]
-        [Authorize(Roles = "Manager,Admin")]
         public List<PageDTO> GetPages()
         {
             var pages = (from page in _context.Pages select page).OrderBy(e => e.Id);
@@ -35,7 +34,7 @@ namespace WebCms.ApiControllers
         }
 
         // POST: api/PageApi
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Manager,Admin")]
         public void Post([FromBody]PageDTO json)
         {
             var art = new Page
@@ -50,13 +49,30 @@ namespace WebCms.ApiControllers
         }
 
         // PUT: api/PageApi/5
-        public void Put(int id, [FromBody]string value)
+        [Authorize(Roles = "Manager,Admin")]
+        public void Put([FromBody]PageDTO jsonPage)
         {
+            var pag = new Page();
+
+            pag.Id = jsonPage.Id;
+            pag.PageName = jsonPage.PageName;
+            pag.PageDescription = jsonPage.PageDescription;
+
+            _context.Entry(pag).State = EntityState.Modified;
+            _context.SaveChanges();
+
         }
 
         // DELETE: api/PageApi/5
-        public void Delete(int id)
+        [Authorize(Roles = "Manager,Admin")]
+        public void Delete([FromBody]PageDTO page)
         {
+            //TODO add cascade delete on Arcitle FK table relationship constraint
+            if (page.Id == 0) return;
+            var pageToDelete = _context.Pages.Single(e => e.Id == page.Id);
+            _context.Entry(pageToDelete).State = EntityState.Deleted;
+
+            _context.SaveChanges();
         }
     }
 }
