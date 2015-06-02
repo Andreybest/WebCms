@@ -31,7 +31,7 @@
             <p data-bind="text:PageDescription"></p>
         }
         <p>
-            <a class="btn btn-default" href="#" data-bind="attr: {'id': Id}" onclick="indexApp.indexVM.goToPageDetails(this)">View more &raquo;</a>
+            <a class="btn btn-default" href="#" data-bind="attr: {'id': Id}, click:$root.goToPageDetails">View more &raquo;</a>
             @if (AccountController.GetUserRole("Admin") || AccountController.GetUserRole("Manager"))
             {
                 <a class="btn btn-danger" href="#" data-bind="click:$root.deletePage">Delete</a>

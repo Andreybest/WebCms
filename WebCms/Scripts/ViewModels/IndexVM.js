@@ -24,7 +24,7 @@
             });
           },
         goToPageDetails: function (selectedPage) {
-            window.location.assign(appUrl + "PageDetail/Index/" + selectedPage.id);
+            window.location.assign(appUrl + "PageDetail/Index/" + selectedPage.Id);
         },
         emptyPageCreationForm: function () {
             $("#savePageBtn").prop('disabled', true);
