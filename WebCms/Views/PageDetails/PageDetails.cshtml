@@ -1,10 +1,10 @@
 ﻿@using WebCms.Controllers
 <script src="~/Scripts/ViewModels/ArticleVM.js"></script>
 
-<h2 ></h2>
+<h2></h2>
 
 <div id="article">
-    <div data-bind="foreach: articles()">
+    <div data-bind="foreach: articles">
         @if (AccountController.GetUserRole("Admin") || AccountController.GetUserRole("Manager") || AccountController.GetUserRole("Editor"))
         {
             <section style="display: flex;">
@@ -35,21 +35,17 @@
         else
         {
             <section style="display: flex;">
-                <!-- ko if: ($data.Type && $data.Type==1) || ($data.type && $data.type==1)-->
-                <!-- ko if: ($data.AnswerText )-->
-                <h3 data-bind="text: AnswerText"></h3>
-                <!-- /ko -->
-                <!-- ko if: ($data.answerText )-->
-                <h3 data-bind="text: answerText"></h3>
-                <!-- /ko -->
-                <!-- /ko -->
-                <!-- ko if: ($data.Type && $data.Type==2) || ($data.type && $data.type==2)-->
-                <!-- ko if: ($data.AnswerText )-->
-                <p data-bind="text: AnswerText"></p>
-                <!-- /ko -->
-                <!-- ko if: ($data.answerText )-->
-                <p data-bind="text: answerText"></p>
-                <!-- /ko -->
+                <!-- ko if: ($data.IsApproved)-->
+                    <!-- ko if: ($data.Type && $data.Type==1) -->
+                        <!-- ko if: ($data.AnswerText )-->
+                        <h3 data-bind="text: AnswerText"></h3>
+                        <!-- /ko -->
+                   <!-- /ko -->
+                    <!-- ko if: ($data.Type && $data.Type==2)-->
+                        <!-- ko if: ($data.AnswerText )-->
+                        <p data-bind="text: AnswerText"></p>
+                        <!-- /ko -->
+                     <!-- /ko -->
                 <!-- /ko -->
                 <br/>
             </section>
@@ -63,7 +59,7 @@
                 <button class="btn-sm btn-info btn " id="addTitle">Add Title</button>
                 <button class="btn-sm btn-info btn" id="addContent">Add Content</button>
             </div>
-            <button class="btn-sm btn-success btn" onclick="articleApp.articleVM.saveArticle(articleApp.articleVM.pageId)">Save</button>
+            <button class="btn-sm btn-success btn" onclick="articleApp.articleVM.saveArticle()">Save</button>
         </div>
     }
 </div>

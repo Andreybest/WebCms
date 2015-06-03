@@ -53,7 +53,7 @@ namespace WebCms.ApiControllers
         public void Put([FromBody]PageDTO jsonPage)
         {
             var pag = new Page();
-
+            //HACK because of the ID, put make replace to that entity, if the ID wasn't provided, you must get the specified record from DB and uptade it
             pag.Id = jsonPage.Id;
             pag.PageName = jsonPage.PageName;
             pag.PageDescription = jsonPage.PageDescription;

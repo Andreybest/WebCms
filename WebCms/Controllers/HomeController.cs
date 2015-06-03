@@ -16,9 +16,10 @@ namespace WebCms.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        [Authorize(Roles = "Admin")]
+        public ActionResult ApproveArticle()
         {
-            ViewBag.Message = "Your contact page.";
+            //ViewBag.Message = "Your contact page.";
 
             return View();
         }

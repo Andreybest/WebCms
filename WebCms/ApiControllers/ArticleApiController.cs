@@ -11,10 +11,19 @@ namespace WebCms.ApiControllers
     {
         private WebCmsContext _context = new WebCmsContext();
         // GET: api/ArticleApi
-        public List<Article> Get()
+        public List<ArticleDTO> Get()
         {
-            var articles = from article in _context.Articles select article;
-            return articles.ToList();
+            var articles = (from art in _context.Articles
+                            join pag in _context.Pages on art.PageId equals pag.Id
+                            where art.IsApproved == null
+                            select art).OrderBy(art => art.Id);
+
+            var artDto = new List<ArticleDTO>();
+            foreach (var article in articles.ToList())
+            {
+                artDto.Add(new ArticleDTO(article));
+            }
+            return artDto;
         }
 
         // GET: api/Article/5
@@ -23,7 +32,7 @@ namespace WebCms.ApiControllers
         {
             var articles = _context.Articles.Where(e => e.PageId == id).OrderBy(e => e.Id);
             var artDto = new List<ArticleDTO>();
-            foreach (var article in articles)
+            foreach (var article in articles.ToList())
             {
                 artDto.Add(new ArticleDTO(article));
 
@@ -33,14 +42,8 @@ namespace WebCms.ApiControllers
         }
 
         // POST: api/Article
-        public void Post([FromBody]string value)
-        {
-        }
-
-
-        // PUT: api/Article/5
         [Authorize(Roles = "Admin, Manager")]
-        public void Put(int id, [FromBody]List<ArticleDTO> articles)
+        public void Post([FromBody]List<ArticleDTO> articles)
         {
             var art = new Article();
 
@@ -54,6 +57,25 @@ namespace WebCms.ApiControllers
                 _context.Entry(art).State = EntityState.Added;
                 _context.SaveChanges();
             }
+        }
+
+
+        // PUT: api/Article/5
+        [Authorize(Roles = "Admin")]
+        public void Put([FromBody]ArticleDTO articles)
+        {
+            var art = new Article();
+
+            //HACK because of the ID, put make replace to that entity, if the ID wasn't provided, you must get the specified record from DB and uptade it
+            art.Id = articles.Id;
+            art.PageId = articles.PageId;
+            art.Type = articles.Type;
+            art.AnswerText = articles.AnswerText;
+            art.IsApproved = articles.IsApproved;
+
+            _context.Entry(art).State = EntityState.Modified;
+            _context.SaveChanges();
+
         }
         [Authorize(Roles = "Admin, Manager")]
         // DELETE: api/Article/5

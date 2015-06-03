@@ -12,6 +12,7 @@ namespace WebCms.Models.DTO
             ArticleOrder = article.ArticleOrder;
             AnswerText = article.AnswerText;
             IsApproved = article.IsApproved;
+            PageName = article.Page.PageName;
 
         }
 
@@ -26,5 +27,7 @@ namespace WebCms.Models.DTO
         public int?  ArticleOrder { get; set; }
         public string AnswerText { get; set; }
         public bool? IsApproved { get; set; }
+
+        public string PageName { get; set; }
     }
 }

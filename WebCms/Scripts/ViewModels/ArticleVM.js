@@ -31,9 +31,9 @@
                 }
             });
         },
-        saveArticle: function (id) {
-            $.ajax("https://localhost:5555/api/ArticleApi/" + id, {
-                type: "put",
+        saveArticle: function () {
+            $.ajax("https://localhost:5555/api/ArticleApi/", {
+                type: "post",
                 data: JSON.stringify(
                     articleApp.articleVM.newArticles()
                 ),

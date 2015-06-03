@@ -1,0 +1,44 @@
+﻿<script src="~/Scripts/ViewModels/ApproveArticleVM.js"></script>
+<h2>Approve articles</h2>
+
+<div id="approveArticles">
+    <!-- ko if: $root.articleNumber() > 0-->
+    <table class="table table-striped table-bordered ">
+        <thead>
+            <tr>
+                <th>Page Name</th>
+                <th>Article Content</th>
+                <th>Article type</th>
+                <th>Approve</th>
+                <th>Reject</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: articlesToApprove">
+            <tr>
+                <td data-bind="text:PageName"></td>
+                <td data-bind="text:AnswerText"></td>
+                <!-- ko if: Type == 1-->
+                <td>Title < h3 ></td>
+                <!-- /ko-->
+                <!-- ko if: Type == 2-->
+                <td>Paragraph < p ></td>
+                <!-- /ko-->
+                <td>
+                    <button class="btn-sm btn-success btn" data-bind="click:$root.approveArticle">Approve</button>
+                </td>
+                <td>
+                    <button class="btn-sm btn-danger btn" data-bind="click:$root.rejectArticle">Reject</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- /ko-->
+    <!-- ko if: $root.articleNumber() == 0-->
+    <br /><br />
+    <h4>You don't have any articles to approve.</h4>
+    <!-- /ko-->
+</div>
+
+<script>
+    ko.applyBindings(approveArticleApp.approveArticleVM, document.getElementById("approveArticles"));
+</script>

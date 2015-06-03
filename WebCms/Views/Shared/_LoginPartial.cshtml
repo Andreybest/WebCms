@@ -23,6 +23,6 @@ else
 <ul class="nav navbar-nav navbar-right">
     @if (AccountController.GetUserRole("Admin"))
     {
-        <li>@Html.ActionLink("Register new user", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink"})</li>
+        <li style="text-decoration: underline">@Html.ActionLink("Register new user", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink"})</li>
     }
 </ul>
