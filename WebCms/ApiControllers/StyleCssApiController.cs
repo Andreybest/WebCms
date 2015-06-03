@@ -33,13 +33,23 @@ namespace WebCms.ApiControllers
             cssStyle.Name = json.Name;
             cssStyle.Url = json.Url;
 
-            _context.Entry(cssStyle).State = EntityState.Modified;
+            _context.Entry(cssStyle).State = EntityState.Added;
             return _context.SaveChanges();
         }
 
         // PUT: api/StyleCss/5
-        public void Put(int id, [FromBody]string value)
+        public void Put([FromBody]JObject jsonData)
         {
+            var json = jsonData.ToObject<StyleCssDTO>();
+            var cssStyle = new StyleCss();
+
+            cssStyle.Id = 10;
+            cssStyle.PageId = 1;
+            cssStyle.Name = json.Name;
+            cssStyle.Url = json.Url;
+
+            _context.Entry(cssStyle).State = EntityState.Modified;
+            _context.SaveChanges();
         }
 
     }

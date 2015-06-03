@@ -1,4 +1,6 @@
 ﻿using System.Web.Optimization;
+using WebCms.Controllers;
+using System.Web.Mvc;
 
 namespace WebCms
 {
@@ -32,10 +34,14 @@ namespace WebCms
                       "~/Scripts/noty/Noty.js"
                       )
                 );
-
+           // var homeController = new HomeController();
+          // var themeName = homeController.GetTheme();
+        /*    ViewBag.AnswerText = "Your answer goes here.";
+*/
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                       "~/Content/darkly.bootstrap.min.css",
                        "~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/Theme/css").Include(
+                "~/Content/darkly.bootstrap.min.css"));
         }
     }
 }

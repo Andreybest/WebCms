@@ -1,9 +1,13 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
+using WebCms.ORM.Models;
 
 namespace WebCms.Controllers
 {
     public class HomeController : Controller
     {
+
+        private static WebCmsContext _context = new WebCmsContext();
         public ActionResult Index()
         {
             return View();
@@ -22,6 +26,14 @@ namespace WebCms.Controllers
             //ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [HttpGet]
+        public static string GetTheme()
+        {
+            var themeName = _context.StyleCsses.Select(c => c.Name).FirstOrDefault();
+           
+            return themeName;
         }
     }
 }
