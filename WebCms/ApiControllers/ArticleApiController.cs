@@ -42,13 +42,15 @@ namespace WebCms.ApiControllers
         }
 
         // POST: api/Article
+       
         [Authorize(Roles = "Admin, Manager")]
-        public void Post([FromBody]List<ArticleDTO> articles)
+        public void ArticlePut([FromBody]List<ArticleDTO> articles)
         {
             var art = new Article();
 
             foreach (var json in articles)
             {
+                //art.Id = json.Id;
                 art.PageId = json.PageId;
                 art.Type = json.Type;
                 art.AnswerText = json.AnswerText;

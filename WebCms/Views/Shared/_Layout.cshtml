@@ -10,11 +10,11 @@
         var themeName = HomeController.GetTheme();
     }
     @*  @Styles.Render("~/Theme/css")*@
-   
+
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-   
+
     <script>
         var themes = {
             "default": "../../Content/bootstrap.min.css",
@@ -48,7 +48,7 @@
             });
         });
     </script>
-     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/css")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -67,10 +67,21 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     @if (AccountController.GetUserRole("Admin"))
                     {
-                        @*<li style="font-weight: bold">*@
+                        if (HomeController.HaveArticlesToApprove())
+                        {
+                            <li style="font-weight: bold;">
+                                <a style="color: orange" href="/Home/ApproveArticle">
+                                    <i class='glyphicon glyphicon-warning-sign'></i> Approve Articles
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
                             <li>
-                            @Html.ActionLink("Approve Articles", "ApproveArticle", "Home")
-                        </li>
+                                @Html.ActionLink("Approve Articles", "ApproveArticle", "Home")
+                            </li>
+                        }
+
                     }
                     @if (AccountController.GetUserRole("Admin") || AccountController.GetUserRole("Manager"))
                     {
@@ -88,6 +99,7 @@
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
+                <script> alert(approveArticleApp.approveArticleVM.articleNumber()); </script>
             </div>
         </div>
     </div>
@@ -104,7 +116,7 @@
     @RenderSection("scripts", required: false)
     <script src="~/Scripts/ViewModels/IndexVM.js"></script>
     <script>
-     var appUrl = @Html.Raw(HttpUtility.JavaScriptStringEncode(WebConfigurationManager.AppSettings["AppBaselUrl"], true));
+        var appUrl = @Html.Raw(HttpUtility.JavaScriptStringEncode(WebConfigurationManager.AppSettings["AppBaselUrl"], true));
     </script>
 </body>
 </html>

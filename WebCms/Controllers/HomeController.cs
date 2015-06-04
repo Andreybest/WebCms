@@ -35,5 +35,11 @@ namespace WebCms.Controllers
            
             return themeName;
         }
+
+        public static bool HaveArticlesToApprove()
+        {
+            var haveArticlesToApprove = _context.Articles.Any(a => a.IsApproved == null);
+            return haveArticlesToApprove;
+        }
     }
 }
