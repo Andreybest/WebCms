@@ -44,11 +44,11 @@
                     //logic to deactivate the intem save button
                     for (var i = 0; i < articleVM.articles().length; i++) {
                         articleVM.articles()[i].ArticleOrder = null;
-                      
+
                     }
                     $(".btn").prop('disabled', false);
                     $("#saveArticlesBtn").hide();
-                 
+
                     notyModule.notyMsg("Articles updated successfully", "information");
                 },
                 error: function (result) {
@@ -82,6 +82,17 @@
                 contentType: 'application/json; charset=utf-8',
                 success: function (result) {
                     articleVM.articles.remove(selectedArticle);
+                    if (articleVM.newArticles().length > 0) {
+                        for (var i = 0; i < articleVM.newArticles().length; i++) {
+                            if (articleVM.newArticles()[i] == selectedArticle) {
+                                articleVM.newArticles.remove(selectedArticle);
+                                if (articleVM.newArticles().length === 0) {
+                                    $("#saveArticlesBtn").hide();
+                                }
+                            }
+                        }
+                    }
+
                     notyModule.notyMsg("Articles deleted successfully", "information");
                 },
                 error: function (result) {
