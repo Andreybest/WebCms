@@ -6,10 +6,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WebCms Application</title>
-    @{
+   @* @{
         var themeName = HomeController.GetTheme();
-    }
-    @*  @Styles.Render("~/Theme/css")*@
+    }*@
+      @Styles.Render("~/Theme/css")
 
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
@@ -24,8 +24,8 @@
             "superhero": "../../Content/superhero.bootstrap.min.css"
         }
         $(function() {
-            //TODO modify here the default theme setter  themes['darkly']
-            var themesheet = $('<link href="' + themes["@themeName"] + '" rel="stylesheet" />');
+            //TODO modify here the default theme setter  themes['darkly']  themeName
+            var themesheet = $('<link href="' + themes["darkly"] + '" rel="stylesheet" />');
             themesheet.appendTo('head');
             $('.theme-link').click(function() {
                 var themeurl = themes[$(this).attr('data-theme')];

@@ -29,9 +29,16 @@
                     <button class="btn-xs btn-danger btn" data-bind="click:$root.deleteArticle">
                         <i class="glyphicon glyphicon-remove"></i>
                     </button>
+                  
                     <button class="btn-xs btn-success btn" data-bind="click:$root.saveThisArticle, enable:ArticleOrder==null">
                         <i class="glyphicon glyphicon-floppy-disk"></i>
                     </button>
+                }
+                @if (AccountController.GetUserRole("Editor"))
+                {
+                <button class="btn-xs btn-success btn" data-bind="click:$root.saveThisArticle, enable:ArticleOrder==null">
+                    <i class="glyphicon glyphicon-floppy-disk"></i>
+                </button>
                 }
             </section>
             <br />
