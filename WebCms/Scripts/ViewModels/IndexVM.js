@@ -47,6 +47,8 @@
                 ),
                 contentType: 'application/json; charset=utf-8',
                 success: function (result) {
+                    debugger;
+                    indexVM.pages.push(indexApp.indexVM.newPage());
                     indexVM.newPage(null);
                     notyModule.notyMsg("Page saved successfully", "information");
                 },
